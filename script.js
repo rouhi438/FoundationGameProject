@@ -12,17 +12,16 @@ function renderGamePage() {
 renderGamePage();
 
 const cardsData = [
-  { id: 1, image: "./assets/soccer 1.png", name: "Soccer Ball 1" },
-  { id: 2, image: "./assets/soccer 2.png", name: "Soccer Ball 2" },
-  { id: 3, image: "./assets/soccer 3.png", name: "Soccer Ball 3" },
-  { id: 4, image: "./assets/soccer 4.png", name: "Soccer Ball 4" },
-  { id: 5, image: "./assets/soccer 5.png", name: "Soccer Ball 5" },
-  { id: 6, image: "./assets/soccer 6.png", name: "Soccer Ball 6" },
-  { id: 7, image: "./assets/soccer 7.png", name: "Soccer Ball 7" },
-  { id: 8, image: "./assets/soccer 8.png", name: "Soccer Ball 8" },
+  { id: 1, image: "./assets/soccer_1.png", name: "Soccer Ball 1" },
+  { id: 2, image: "./assets/soccer_2.png", name: "Soccer Ball 2" },
+  { id: 3, image: "./assets/soccer_3.png", name: "Soccer Ball 3" },
+  { id: 4, image: "./assets/soccer_4.png", name: "Soccer Ball 4" },
+  { id: 5, image: "./assets/soccer_5.png", name: "Soccer Ball 5" },
+  { id: 6, image: "./assets/soccer_6.png", name: "Soccer Ball 6" },
+  { id: 7, image: "./assets/soccer_7.png", name: "Soccer Ball 7" },
+  { id: 8, image: "./assets/soccer_8.png", name: "Soccer Ball 8" },
 ];
 
-// ====== VARIABLES ======
 const cardContainer = document.querySelector(".card-container");
 const timeEl = document.getElementById("time");
 const movesEl = document.getElementById("moves");
