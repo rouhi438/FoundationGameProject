@@ -1,4 +1,4 @@
-const gameContainer = document.getElementById("game-container");
+const gameContainer = document.querySelector(".game-container"); // used class instead of id
 function renderGamePage() {
   gameContainer.innerHTML = `<div class="game-info">
         <span>Time: <b id="time">0</b>s</span>
@@ -6,11 +6,11 @@ function renderGamePage() {
         <span>Matched: <b id="match">0</b>/8</span>
         </div>
         <div class="card-container"></div>
-        <button id="reset-btn">Reset The Game</button>
+        <button id="reset-btn">Reset Game</button>
         <p id="win-message"></p>`;
 }
 renderGamePage();
-// ====== DATA ======
+
 const cardsData = [
   { id: 1, image: "./assets/soccer 1.png", name: "Soccer Ball 1" },
   { id: 2, image: "./assets/soccer 2.png", name: "Soccer Ball 2" },
@@ -39,7 +39,6 @@ let match = 0;
 let time = 0;
 let timer = null;
 
-// ====== INIT GAME ======
 function startGame() {
   cardContainer.innerHTML = "";
   cards = shuffleCards([...cardsData, ...cardsData]);
@@ -70,7 +69,6 @@ function startGame() {
   });
 }
 
-// ====== SHUFFLE ======
 function shuffleCards(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -79,7 +77,6 @@ function shuffleCards(a) {
   return a;
 }
 
-// ====== FLIP CARD ======
 function flip(card) {
   if (
     lock ||
@@ -107,7 +104,6 @@ function flip(card) {
   setTimeout(check, 700);
 }
 
-// ====== CHECK MATCH ======
 function check() {
   if (firstCard.dataset.id === secondCard.dataset.id) {
     firstCard.classList.add("matched");
@@ -128,8 +124,6 @@ function check() {
   lock = false;
 }
 
-// ====== RESET ======
 resetBtn.onclick = startGame;
 
-// ====== START GAME ======
 startGame();
