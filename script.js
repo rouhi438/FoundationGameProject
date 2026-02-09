@@ -6,27 +6,27 @@ function renderGamePage() {
         <span>Matched: <b id="match">0</b>/8</span>
         </div>
         <div class="card-container"></div>
-        <button id="reset-btn">Reset Game</button>
-        <p id="win-message"></p>`;
+        <button id="reset-btn" class="reset-btn" type="submit">Reset Game</button>
+        <p class="win-message"></p>`;
 }
 renderGamePage();
 
 const cardsData = [
-  { id: 1, image: "./assets/soccer_1.png", name: "Soccer Ball 1" },
-  { id: 2, image: "./assets/soccer_2.png", name: "Soccer Ball 2" },
-  { id: 3, image: "./assets/soccer_3.png", name: "Soccer Ball 3" },
-  { id: 4, image: "./assets/soccer_4.png", name: "Soccer Ball 4" },
-  { id: 5, image: "./assets/soccer_5.png", name: "Soccer Ball 5" },
-  { id: 6, image: "./assets/soccer_6.png", name: "Soccer Ball 6" },
-  { id: 7, image: "./assets/soccer_7.png", name: "Soccer Ball 7" },
-  { id: 8, image: "./assets/soccer_8.png", name: "Soccer Ball 8" },
+  { id: 1, image: "./assets/cardImages-1/img-1.png", name: "img-1" },
+  { id: 2, image: "./assets/cardImages-1/img-2.png", name: "img-2" },
+  { id: 3, image: "./assets/cardImages-1/img-3.png", name: "img-3" },
+  { id: 4, image: "./assets/cardImages-1/img-4.png", name: "img-4" },
+  { id: 5, image: "./assets/cardImages-1/img-5.png", name: "img-5" },
+  { id: 6, image: "./assets/cardImages-1/img-6.png", name: "img-6" },
+  { id: 7, image: "./assets/cardImages-1/img-7.png", name: "img-7" },
+  { id: 8, image: "./assets/cardImages-1/img-8.png", name: "img-8" },
 ];
 
 const cardContainer = document.querySelector(".card-container");
 const timeEl = document.getElementById("time");
 const movesEl = document.getElementById("moves");
 const matchEl = document.getElementById("match");
-const msg = document.getElementById("win-message");
+const msg = document.querySelector(".win-message");
 const resetBtn = document.getElementById("reset-btn");
 
 let cards = [];
@@ -41,10 +41,15 @@ let timer = null;
 function startGame() {
   cardContainer.innerHTML = "";
   cards = shuffleCards([...cardsData, ...cardsData]);
-  moves = match = time = 0;
-  firstCard = secondCard = null;
+  moves = 0;
+  match = 0;
+  time = 0;
+  firstCard = null;
+  secondCard = null;
   lock = false;
-  timeEl.textContent = movesEl.textContent = matchEl.textContent = 0;
+  timeEl.textContent = 0;
+  movesEl.textContent = 0;
+  matchEl.textContent = 0;
   msg.textContent = "";
   clearInterval(timer);
   timer = null;
@@ -55,12 +60,10 @@ function startGame() {
     card.dataset.id = cardData.id;
 
     card.innerHTML = `
-      <div class="inner">
         <div class="face front"></div>
         <div class="face back">
           <img src="${cardData.image}" alt="${cardData.name}">
         </div>
-      </div>
     `;
 
     card.addEventListener("click", () => flip(card));
