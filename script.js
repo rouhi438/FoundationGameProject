@@ -28,6 +28,12 @@ const movesEl = document.getElementById("moves");
 const matchEl = document.getElementById("match");
 const msg = document.querySelector(".win-message");
 const resetBtn = document.getElementById("reset-btn");
+
+const flipSound = new Audio("assets/sounds/sound_flip_card.ogg");
+const correctSound = new Audio("assets/sounds/sound_win.wav");
+const wrongSound = new Audio("assets/sounds/sound_wrong.wav");
+const shuffleSound = new Audio("assets/sounds/sound_shuffle.wav");
+
 let cards = [];
 let firstCard = null;
 let secondCard = null;
@@ -79,6 +85,7 @@ async function startGame() {
 }
 
 function shuffleCards(a) {
+  playSound(shuffleSound);
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [a[i], a[j]] = [a[j], a[i]];
@@ -100,6 +107,7 @@ function flip(card) {
   }
 
   card.classList.add("flipped");
+  playSound(flipSound);
 
   if (!firstCard) {
     firstCard = card;
@@ -115,15 +123,17 @@ function flip(card) {
 
 function check() {
   if (firstCard.dataset.id === secondCard.dataset.id) {
+    playSound(correctSound);
     firstCard.classList.add("matched");
     secondCard.classList.add("matched");
     matchEl.textContent = ++match;
 
     if (match === 8) {
       clearInterval(timer);
-      msg.textContent = "YOU WIN THE GAME 🎉";
+      msg.textContent = "🎉Congratulations, you have Matched all cards!🤩";
     }
   } else {
+    playSound(wrongSound);
     firstCard.classList.remove("flipped");
     secondCard.classList.remove("flipped");
   }
@@ -131,6 +141,11 @@ function check() {
   firstCard = null;
   secondCard = null;
   lock = false;
+}
+
+function playSound(sound) {
+  sound.currentTime = 0;
+  sound.play();
 }
 
 resetBtn.onclick = startGame;
