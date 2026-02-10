@@ -11,16 +11,16 @@ function renderGamePage() {
 }
 renderGamePage();
 
-const cardsData = [
-  { id: 1, image: "./assets/cardImages-1/img-1.png", name: "img-1" },
-  { id: 2, image: "./assets/cardImages-1/img-2.png", name: "img-2" },
-  { id: 3, image: "./assets/cardImages-1/img-3.png", name: "img-3" },
-  { id: 4, image: "./assets/cardImages-1/img-4.png", name: "img-4" },
-  { id: 5, image: "./assets/cardImages-1/img-5.png", name: "img-5" },
-  { id: 6, image: "./assets/cardImages-1/img-6.png", name: "img-6" },
-  { id: 7, image: "./assets/cardImages-1/img-7.png", name: "img-7" },
-  { id: 8, image: "./assets/cardImages-1/img-8.png", name: "img-8" },
-];
+// const cardsData = [
+//   { id: 1, image: "./assets/cardImages-1/img-1.png", name: "img-1" },
+//   { id: 2, image: "./assets/cardImages-1/img-2.png", name: "img-2" },
+//   { id: 3, image: "./assets/cardImages-1/img-3.png", name: "img-3" },
+//   { id: 4, image: "./assets/cardImages-1/img-4.png", name: "img-4" },
+//   { id: 5, image: "./assets/cardImages-1/img-5.png", name: "img-5" },
+//   { id: 6, image: "./assets/cardImages-1/img-6.png", name: "img-6" },
+//   { id: 7, image: "./assets/cardImages-1/img-7.png", name: "img-7" },
+//   { id: 8, image: "./assets/cardImages-1/img-8.png", name: "img-8" },
+// ];
 
 const cardContainer = document.querySelector(".card-container");
 const timeEl = document.getElementById("time");
@@ -28,19 +28,18 @@ const movesEl = document.getElementById("moves");
 const matchEl = document.getElementById("match");
 const msg = document.querySelector(".win-message");
 const resetBtn = document.getElementById("reset-btn");
-
 let cards = [];
 let firstCard = null;
 let secondCard = null;
-let lock = false;
+let lock = false; // to prevent more click
 let moves = 0;
 let match = 0;
 let time = 0;
 let timer = null;
 
-function startGame() {
+async function startGame() {
   cardContainer.innerHTML = "";
-  cards = shuffleCards([...cardsData, ...cardsData]);
+
   moves = 0;
   match = 0;
   time = 0;
@@ -54,6 +53,14 @@ function startGame() {
   clearInterval(timer);
   timer = null;
 
+  //-- fetch data(cards)
+  const response = await fetch("http://localhost:3000/cards/random-pack");
+  const data = await response.json();
+  const cardData = data.cards;
+
+  //duplicate every pack cards
+  cards = shuffleCards([...cardData, ...cardData]);
+
   cards.forEach((cardData) => {
     const card = document.createElement("div");
     card.className = "card";
@@ -62,7 +69,7 @@ function startGame() {
     card.innerHTML = `
         <div class="face front"></div>
         <div class="face back">
-          <img src="${cardData.image}" alt="${cardData.name}">
+          <img src="${cardData.image_path}" alt="${cardData.name}">
         </div>
     `;
 
