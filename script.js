@@ -30,6 +30,7 @@ const msg = document.querySelector(".win-message");
 const resetBtn = document.getElementById("reset-btn");
 
 const flipSound = new Audio("assets/sounds/sound_flip_card.ogg");
+const flipSound = new Audio("assets/sounds/sound_flipcard.ogg");
 const correctSound = new Audio("assets/sounds/sound_win.wav");
 const wrongSound = new Audio("assets/sounds/sound_wrong.wav");
 const shuffleSound = new Audio("assets/sounds/sound_shuffle.wav");
