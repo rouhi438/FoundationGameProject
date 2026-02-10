@@ -24,8 +24,6 @@ body {
 .header {
   width: 100%;
   margin-right: 0 auto;
-
-  /* Add styling */
 }
 h1 {
   text-align: center;
@@ -108,8 +106,9 @@ h1 {
 
 .win-message {
   text-align: center;
-  font-size: 22px;
-  color: green;
+  font-size: 24px;
+  font-weight: bold;
+  color: #009c2c;
 }
 
 .reset-btn {
@@ -146,7 +145,7 @@ h1 {
   box-shadow: inset 0px 3px 7px #3c4fe0;
   transform: translateY(2px);
 }
-.footer {
+footer p {
   border: 1px solid none;
   background-color: antiquewhite;
   font-size: 12px;

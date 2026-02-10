@@ -121,7 +121,7 @@ function check() {
 
     if (match === 8) {
       clearInterval(timer);
-      msg.textContent = "🎉Hurray you WON the game!🎉";
+      msg.textContent = "🎉Congratulations, you have Matched all cards!🤩";
     }
   } else {
     playSound(wrongSound);
