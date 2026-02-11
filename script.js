@@ -60,10 +60,10 @@ async function startGame() {
   timer = null;
 
   //-- fetch data(cards)
-  const response = await fetch("http://localhost:3000/cards/random-pack");
-  const data = await response.json();
-  const cardData = data.cards;
-
+ const response = await fetch("http://localhost:3000/cards/random-pack");
+ const data = await response.json();
+ const cardData = data.cards;
+ 
   //duplicate every pack cards
   cards = shuffleCards([...cardData, ...cardData]);
 
