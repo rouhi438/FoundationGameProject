@@ -14,33 +14,23 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  font-family: sans-serif;
+  font-family: "Bitter" serif;
   padding: 10px;
-  margin: 0;
-}
-
-main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  gap: 10px;
 }
 
 header,
 footer {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   background-color: antiquewhite;
-  border-radius: 6px;
-
+  opacity: 0.7;
 }
 
 h1 {
   text-align: center;
   font-size: 28px;
-  padding: 5px;
+  padding: 10px;
+  font-weight: 600;
 }
 
 .game-container {
@@ -51,22 +41,25 @@ h1 {
   justify-content: center;
   gap: 10px;
   position: relative;
+  margin-top: 120px;
 }
 
 .game-info {
   width: min(400px, 90vw);
   background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
   color: black;
-  padding: 12px;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   font-weight: bold;
   border-radius: 6px;
+  box-shadow:
+    rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .card-container {
   width: min(390px, 90vw);
-
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
@@ -133,6 +126,9 @@ h1 {
   position: absolute;
   top: 200px;
 }
+strong {
+  color: yellow;
+}
 
 .btns {
   min-width: 320px;
@@ -159,7 +155,9 @@ h1 {
   padding: 0 30px;
   font-size: 16px;
   text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 
 #reset-btn:hover,
@@ -176,49 +174,39 @@ h1 {
   box-shadow: inset 0px 3px 7px #3c4fe0;
   transform: translateY(2px);
 }
-
-footer p {
+.footer {
+  margin-top: 80px;
+  font-size: 12px;
+  font-family: sans-serif;
+}
+.footer p {
   font-size: 12px;
   padding: 10px;
   text-align: center;
 }
 
-footer a {
+.footer a {
   text-decoration: none;
 }
 
-footer a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
 @media (max-width: 500px) {
-
-  .game-info,
-  header,
-  footer {
-    width: 340px;
-  }
-
   .card-container {
     width: 320px;
     height: 320px;
   }
 
   h1 {
-    font-size: 20px;
+    font-size: 28px;
   }
 
   .card {
     height: 70px;
   }
 
-  footer p {
+  .footer p {
     font-size: 10px;
   }
 }
-
-
 .emoji-icon {
   position: absolute;
   top: 50%;
@@ -249,7 +237,6 @@ footer a:hover {
 }
 
 @keyframes emoji-pulse {
-
   0%,
   100% {
     transform: translate(-50%, -50%) scale(3);
