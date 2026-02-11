@@ -7,44 +7,54 @@
 body {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   background-image: url("./assets/dark_natural.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   font-family: sans-serif;
-  padding: 15px;
-}
-.main-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centers horizontally */
-}
-.header {
-  width: 100%;
-  margin-right: 0 auto;
-}
-h1 {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 10px;
-  border: 1px solid none;
-  background-color: antiquewhite;
+  padding: 10px;
+  margin: 0;
 }
 
-.game-container {
-  max-width: 450px;
+main {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   gap: 10px;
+}
+
+header,
+footer {
+  width: 90%;
   margin: 0 auto;
+  background-color: antiquewhite;
+  border-radius: 6px;
+
+}
+
+h1 {
+  text-align: center;
+  font-size: 28px;
+  padding: 5px;
+}
+
+.game-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
 }
 
 .game-info {
-  width: 100%;
+  width: min(400px, 90vw);
   background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
   color: black;
   padding: 12px;
@@ -55,26 +65,36 @@ h1 {
 }
 
 .card-container {
-  width: 100%;
-  background: #eef1aa;
-  padding: 10px;
+  width: min(390px, 90vw);
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   border-radius: 8px;
+  height: 390px;
 }
 
 .card {
-  height: 100px;
+  aspect-ratio: 1/1;
+  height: 90px;
   perspective: 800px;
   cursor: pointer;
   transition: transform 0.6s;
   transform-style: preserve-3d;
   position: relative;
+  background: transparent;
+}
+
+.card:hover {
+  transform: scale(1.08);
 }
 
 .card.flipped {
   transform: rotateY(180deg);
+}
+
+.card.matched {
+  display: none;
 }
 
 .face {
@@ -105,19 +125,29 @@ h1 {
 }
 
 .win-message {
+  width: 300px;
   text-align: center;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
-  color: #009c2c;
+  color: #03724b;
+  position: absolute;
+  top: 200px;
 }
 
-.reset-btn {
-  width: 90%;
-  display: inline-block;
+.btns {
+  min-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+}
+
+#reset-btn,
+#hard-level {
+  width: 48%;
   outline: 0;
   border: 0;
   cursor: pointer;
-  will-change: box-shadow, transform;
   background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
   box-shadow:
     0px 2px 4px rgb(45 35 66 / 40%),
@@ -125,15 +155,15 @@ h1 {
     inset 0px -3px 0px rgb(58 65 111 / 50%);
   border-radius: 6px;
   color: #212020;
-  height: 48px;
-  font-size: 18px;
+  height: 45px;
+  padding: 0 30px;
+  font-size: 16px;
   text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
-  transition:
-    box-shadow 0.15s ease,
-    transform 0.15s ease;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 
-.reset-btn:hover {
+#reset-btn:hover,
+#hard-level:hover {
   box-shadow:
     0px 4px 8px rgb(45 35 66 / 40%),
     0px 7px 13px -3px rgb(45 35 66 / 30%),
@@ -141,21 +171,91 @@ h1 {
   transform: translateY(-2px);
 }
 
-.reset-btn:active {
+#reset-btn:active,
+#hard-level:active {
   box-shadow: inset 0px 3px 7px #3c4fe0;
   transform: translateY(2px);
 }
+
 footer p {
-  border: 1px solid none;
-  background-color: antiquewhite;
   font-size: 12px;
   padding: 10px;
   text-align: center;
-  margin-top: 20px;
 }
 
-@media (max-width: 400px) {
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 500px) {
+
+  .game-info,
+  header,
+  footer {
+    width: 340px;
+  }
+
+  .card-container {
+    width: 320px;
+    height: 320px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
   .card {
-    height: 80px;
+    height: 70px;
+  }
+
+  footer p {
+    font-size: 10px;
+  }
+}
+
+
+.emoji-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-size: 64px;
+  pointer-events: none;
+  opacity: 1;
+  z-index: 10;
+}
+
+@keyframes emoji-pop {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(3);
+  }
+
+  70% {
+    transform: translate(-50%, -50%) scale(2);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+  }
+}
+
+@keyframes emoji-pulse {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(2.5);
   }
 }
