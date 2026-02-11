@@ -2,10 +2,6 @@ const gameContainer = document.getElementById("game-container");
 
 function renderGamePage() {
   gameContainer.innerHTML = `
-    <header>
-      <h1>Memory Matching Game</h1>
-    </header>
-
     <section class="game-info">
       <p>Time: <span id="time">0</span></p>
       <p>Moves: <span id="moves">0</span></p>
@@ -20,17 +16,6 @@ function renderGamePage() {
 
     <p class="win-message"></p>
     <div class="emoji-icon"></div>
-
-    <footer>
-      <p>
-        Coded by <a href="https://github.com/Idesta1" target="_blank">Iglesia</a> and
-        <a href="https://github.com/rouhi438" target="_blank">Abbas</a>
-        <a class="HYF" href="https://www.hackyourfuture.dk/about" target="_blank">HYF</a>
-        &copy Feb 2026, open-sourced on
-        <a href="https://github.com/Idesta1/FoundationGameProject" target="_blank">Github</a>
-        and hosted on <a href="#">Netlify</a> 🖤
-      </p>
-    </footer>
   `;
 }
 renderGamePage();
@@ -200,7 +185,6 @@ function checkMatch() {
 }
 
 function gameOver(win) {
-  // لغو timeout مربوط به چک کردن تطابق
   if (cardContainer.timeoutId) {
     clearTimeout(cardContainer.timeoutId);
     cardContainer.timeoutId = null;
@@ -214,11 +198,11 @@ function gameOver(win) {
   lock = true;
 
   if (win) {
-    msg.textContent = "Congratulations, you WIN the game! 😎";
-    if (!emojiVisible && hardLevel) showEmoji("😂");
+    msg.textContent = "Congratulations, you <strong>WON</strong> the game! 😎";
+    if (!emojiVisible && hardLevel) showEmoji("🎉");
   } else {
-    msg.textContent = "Time's up! You lose";
-    if (!emojiVisible && hardLevel) showEmoji("😡");
+    if (!emojiVisible && hardLevel) showEmoji("☹");
+    msg.textContent = "Game Over,Try Again!";
     timeEl.textContent = 0;
   }
 
