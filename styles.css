@@ -14,18 +14,9 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  font-family: sans-serif;
+  font-family: "Bitter" sans-serif;
   padding: 10px;
   margin: 0;
-}
-
-main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  gap: 10px;
 }
 
 header,
@@ -34,13 +25,12 @@ footer {
   margin: 0 auto;
   background-color: antiquewhite;
   opacity: 0.7;
-  border-radius: 4px;
 }
 
 h1 {
   text-align: center;
-  font-size: 28px;
-  padding: 5px;
+  font-size: 32px;
+  padding: 10px;
 }
 
 .game-container {
@@ -188,6 +178,8 @@ footer {
   font-size: 12px;
   padding: 10px;
   text-align: center;
+  font-family: sans-serif;
+  margin-top: 4rem;
 }
 
 footer a {
@@ -252,7 +244,6 @@ footer a:hover {
 }
 
 @keyframes emoji-pulse {
-
   0%,
   100% {
     transform: translate(-50%, -50%) scale(3);
