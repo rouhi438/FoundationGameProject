@@ -14,23 +14,33 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  font-family: "Bitter" serif;
+  font-family: sans-serif;
   padding: 10px;
+  margin: 0;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
 }
 
 header,
 footer {
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
   background-color: antiquewhite;
   opacity: 0.7;
+  border-radius: 4px;
 }
 
 h1 {
   text-align: center;
   font-size: 28px;
-  padding: 10px;
-  font-weight: 600;
+  padding: 5px;
 }
 
 .game-container {
@@ -41,14 +51,13 @@ h1 {
   justify-content: center;
   gap: 10px;
   position: relative;
-  margin-top: 120px;
 }
 
 .game-info {
   width: min(400px, 90vw);
   background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
   color: black;
-  padding: 20px;
+  padding: 12px;
   display: flex;
   justify-content: space-between;
   font-weight: bold;
@@ -126,6 +135,7 @@ h1 {
   position: absolute;
   top: 200px;
 }
+
 strong {
   color: yellow;
 }
@@ -135,7 +145,6 @@ strong {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2px;
 }
 
 #reset-btn,
@@ -174,19 +183,20 @@ strong {
   box-shadow: inset 0px 3px 7px #3c4fe0;
   transform: translateY(2px);
 }
-.footer {
-  margin-top: 80px;
-  font-size: 12px;
-  font-family: sans-serif;
-}
-.footer p {
+
+footer {
   font-size: 12px;
   padding: 10px;
   text-align: center;
 }
 
-.footer a {
+footer a {
   text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 @media (max-width: 500px) {
@@ -195,18 +205,23 @@ strong {
     height: 320px;
   }
 
+  .game-info {
+    width: 320px;
+  }
+
   h1 {
-    font-size: 28px;
+    font-size: 20px;
   }
 
   .card {
     height: 70px;
   }
 
-  .footer p {
+  footer p {
     font-size: 10px;
   }
 }
+
 .emoji-icon {
   position: absolute;
   top: 50%;
@@ -237,6 +252,7 @@ strong {
 }
 
 @keyframes emoji-pulse {
+
   0%,
   100% {
     transform: translate(-50%, -50%) scale(3);
